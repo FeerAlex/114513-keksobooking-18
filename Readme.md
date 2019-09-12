@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Феер](https://up.htmlacademy.ru/javascript/18/user/114513).
-* Наставник: `Неизвестно`.
+* Наставник: [Павел Фанасков](https://htmlacademy.ru/profile/id615993).
 
 ---
 
