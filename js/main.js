@@ -38,8 +38,8 @@ var getRandomElement = function (i) {
         y: y,
       }
     }
-  }
-}
+  };
+};
 
 var getRandomAnnouncementsArray = function () {
   var randomAnnouncements = [];
