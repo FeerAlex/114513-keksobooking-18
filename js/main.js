@@ -13,7 +13,7 @@ var getRandomNumber = function (min, max) {
   return Math.floor((Math.random() * max) + min);
 };
 
-var getRandomElement = function () {
+var getRandomElement = function (i) {
   var x = getRandomNumber(0, map.offsetWidth);
   var y = getRandomNumber(130, 630);
 
@@ -45,7 +45,7 @@ var getRandomAnnouncementsArray = function () {
   var randomAnnouncements = [];
 
   for (var i = 0; i < 8; i++) {
-    randomAnnouncements.push(getRandomElement());
+    randomAnnouncements.push(getRandomElement(i));
   }
 
   return randomAnnouncements;
