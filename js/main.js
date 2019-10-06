@@ -4,6 +4,9 @@ var TIMES = ['12:00', '13:00', '14:00'];
 var TYPES = ['palace', 'flat', 'house', 'bungalo'];
 var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+var ROOMS = [1, 2, 3, 4];
+var PRICES = [300000, 400000, 600000];
+var GUESTS = [5, 10, 15, 20];
 
 var map = document.querySelector('.map');
 var template = document.querySelector('#pin').content.querySelector('.map__pin');
@@ -13,42 +16,38 @@ var getRandomNumber = function (min, max) {
   return Math.floor((Math.random() * max) + min);
 };
 
-var getRandomElement = function (i) {
-  var x = getRandomNumber(0, map.offsetWidth);
-  var y = getRandomNumber(130, 630);
-
-  return {
-    author: {
-      avatar: 'img/avatars/user0' + (i + 1) + '.png',
-      offer: {
-        title: 'Милая квартира',
-        address: x + ', ' + y,
-        price: getRandomNumber(1, 4) * 1000000,
-        type: TYPES[getRandomNumber(0, TYPES.length - 1)],
-        rooms: getRandomNumber(1, 4),
-        guests: getRandomNumber(1, 20),
-        checkin: TIMES[getRandomNumber(0, TIMES.length - 1)],
-        checkout: TIMES[getRandomNumber(0, TIMES.length - 1)],
-        features: FEATURES.slice(0).splice(0, getRandomNumber(1, FEATURES.length)),
-        description: 'Описание квартиры',
-        photos: PHOTOS.slice(0).splice(0, getRandomNumber(1, PHOTOS.length)),
-      },
-      location: {
-        x: x,
-        y: y,
-      }
-    }
-  };
+var getRandomElement = function (array) {
+  return array[getRandomNumber(0, array.length)];
 };
 
-var getRandomAnnouncementsArray = function () {
-  var randomAnnouncements = [];
-
+var getAnnouncementsArray = function () {
   for (var i = 0; i < 8; i++) {
-    randomAnnouncements.push(getRandomElement(i));
-  }
+    var x = getRandomNumber(0, map.offsetWidth);
+    var y = getRandomNumber(130, 630);
 
-  return randomAnnouncements;
+    announcements.push({
+      author: {
+        avatar: 'img/avatars/user0' + (i + 1) + '.png',
+        offer: {
+          title: 'Милая квартира',
+          address: x + ', ' + y,
+          price: getRandomElement(PRICES),
+          type: getRandomElement(TYPES),
+          rooms: getRandomElement(ROOMS),
+          guests: getRandomElement(GUESTS),
+          checkin: getRandomElement(TIMES),
+          checkout: getRandomElement(TIMES),
+          features: FEATURES.slice(0).splice(0, getRandomNumber(1, FEATURES.length)),
+          description: 'Описание квартиры',
+          photos: PHOTOS.slice(0).splice(0, getRandomNumber(1, PHOTOS.length)),
+        },
+        location: {
+          x: x,
+          y: y,
+        }
+      }
+    });
+  }
 };
 
 var createPin = function (pin) {
@@ -74,7 +73,7 @@ var insertPins = function () {
   container.appendChild(fragment);
 };
 
-announcements = getRandomAnnouncementsArray();
+getAnnouncementsArray();
 
 insertPins();
 
