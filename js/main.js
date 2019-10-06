@@ -13,34 +13,42 @@ var getRandomNumber = function (min, max) {
   return Math.floor((Math.random() * max) + min);
 };
 
-var createAnnouncementsArray = function () {
-  for (var i = 0; i < 8; i++) {
-    var x = getRandomNumber(0, map.offsetWidth);
-    var y = getRandomNumber(130, 630);
+var getRandomElement = function () {
+  var x = getRandomNumber(0, map.offsetWidth);
+  var y = getRandomNumber(130, 630);
 
-    announcements.push({
-      author: {
-        avatar: 'img/avatars/user0' + (i + 1) + '.png',
-        offer: {
-          title: 'Милая квартира',
-          address: x + ', ' + y,
-          price: getRandomNumber(1, 4) * 1000000,
-          type: TYPES[getRandomNumber(0, TYPES.length - 1)],
-          rooms: getRandomNumber(1, 4),
-          guests: getRandomNumber(1, 20),
-          checkin: TIMES[getRandomNumber(0, TIMES.length - 1)],
-          checkout: TIMES[getRandomNumber(0, TIMES.length - 1)],
-          features: FEATURES.slice(0).splice(0, getRandomNumber(1, FEATURES.length)),
-          description: 'Описание квартиры',
-          photos: PHOTOS.slice(0).splice(0, getRandomNumber(1, PHOTOS.length)),
-        },
-        location: {
-          x: x,
-          y: y,
-        }
+  return {
+    author: {
+      avatar: 'img/avatars/user0' + (i + 1) + '.png',
+      offer: {
+        title: 'Милая квартира',
+        address: x + ', ' + y,
+        price: getRandomNumber(1, 4) * 1000000,
+        type: TYPES[getRandomNumber(0, TYPES.length - 1)],
+        rooms: getRandomNumber(1, 4),
+        guests: getRandomNumber(1, 20),
+        checkin: TIMES[getRandomNumber(0, TIMES.length - 1)],
+        checkout: TIMES[getRandomNumber(0, TIMES.length - 1)],
+        features: FEATURES.slice(0).splice(0, getRandomNumber(1, FEATURES.length)),
+        description: 'Описание квартиры',
+        photos: PHOTOS.slice(0).splice(0, getRandomNumber(1, PHOTOS.length)),
       },
-    });
+      location: {
+        x: x,
+        y: y,
+      }
+    }
   }
+}
+
+var getRandomAnnouncementsArray = function () {
+  var randomAnnouncements = [];
+
+  for (var i = 0; i < 8; i++) {
+    randomAnnouncements.push(getRandomElement());
+  }
+
+  return randomAnnouncements;
 };
 
 var createPin = function (pin) {
@@ -66,7 +74,8 @@ var insertPins = function () {
   container.appendChild(fragment);
 };
 
-createAnnouncementsArray();
+announcements = getRandomAnnouncementsArray();
+
 insertPins();
 
 map.classList.remove('map--faded');
