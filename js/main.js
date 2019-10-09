@@ -55,7 +55,7 @@ var getAnnouncementsArray = function () {
 var createCard = function (announcement) {
   var element = cardTemplate.cloneNode(true);
   var offer = announcement.author.offer;
-  var types = {'flat': 'Квартира', 'bungalo' : 'Бунгало', 'house' : 'Дом', 'palace' : 'Дворец'};
+  var types = {'flat': 'Квартира', 'bungalo': 'Бунгало', 'house': 'Дом', 'palace': 'Дворец'};
   var title = element.querySelector('.popup__title');
   var address = element.querySelector('.popup__text--address');
   var price = element.querySelector('.popup__text--price');
@@ -99,7 +99,7 @@ var createCard = function (announcement) {
   });
 
   return element;
-}
+};
 
 var createPin = function (pin) {
   var element = pinTemplate.cloneNode(true);
