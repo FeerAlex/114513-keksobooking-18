@@ -78,25 +78,25 @@ var createCard = function (announcement) {
 
   features.innerHTML = '';
 
-  offer.features.map(function (el) {
+  for (var i = 0; i < offer.features.length; i++) {
     var li = document.createElement('li');
 
-    li.classList.add('popup__feature', 'popup__feature--' + el);
+    li.classList.add('popup__feature', 'popup__feature--' + offer.features[i]);
     features.appendChild(li);
-  });
+  }
 
   photos.innerHTML = '';
 
-  offer.photos.map(function (el) {
+  for (var k = 0; k < offer.photos.length; k++) {
     var img = document.createElement('img');
 
     img.setAttribute('width', 45);
     img.setAttribute('height', 40);
     img.setAttribute('alt', 'Фотография жилья');
-    img.setAttribute('src', el);
+    img.setAttribute('src', offer.photos[k]);
     img.classList.add('popup__photo');
     photos.appendChild(img);
-  });
+  }
 
   return element;
 };
